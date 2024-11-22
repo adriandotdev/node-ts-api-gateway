@@ -2,6 +2,20 @@ import { Request } from "express";
 
 const privateRoutes = [
 	{
+		path: "/api/users/change-password",
+		auth: true,
+		rateLimit: {
+			windowMs: 10 * 1000,
+			limit: 3,
+		},
+		proxy: {
+			target: "http://localhost:8800",
+			changeOrigin: true,
+			pathRewrite: { "^/": "/api/v1/users/change-password" },
+		},
+		roles: ["ADMIN", "USER"],
+	},
+	{
 		path: "/api/users/:username",
 		auth: true,
 		rateLimit: {

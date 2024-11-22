@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
 interface ExtendedRequest extends Request {
+	username?: string;
 	roles?: string[];
 }
 
@@ -57,6 +58,7 @@ class AuthenticationMiddleware {
 
 						const payload = decode as JwtPayload;
 
+						req.username = payload.username;
 						req.roles = payload.roles;
 					});
 

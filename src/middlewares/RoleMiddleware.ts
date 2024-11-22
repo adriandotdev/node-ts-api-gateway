@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 interface ExtendedRequest extends Request {
+	username?: string;
 	roles?: string[];
 }
 
