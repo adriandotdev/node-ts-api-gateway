@@ -8,6 +8,10 @@ const port = 8800;
 // Middleware to parse JSON request body
 app.use(express.json());
 
+interface ExtendedRequest extends Request {
+	username?: string;
+	roles?: string[];
+}
 // In-memory store for users (just for testing)
 const users: any = {
 	admin: {
@@ -100,6 +104,36 @@ app.get(
 			return res
 				.status(200)
 				.json({ statusCode: 200, data: users[username], message: "OK" });
+		})().catch(next);
+	}
+);
+
+app.put(
+	"/api/v1/users/change-password",
+	(req: ExtendedRequest, res: Response, next: NextFunction) => {
+		(async () => {
+			console.log(req.url);
+
+			const { password } = req.body;
+			const username = String(req.headers["x-username"]);
+
+			if (!users[username])
+				return res.status(400).json({
+					statusCode: 400,
+					data: "Invalid to change password",
+					message: "Bad Request",
+				});
+
+			const hashedPassword = await bcrypt.hash(password, 10);
+
+			users[username] = {
+				...users[username],
+				password: hashedPassword,
+			};
+
+			return res
+				.status(200)
+				.json({ statusCode: 200, data: "Password changed", message: "OK" });
 		})().catch(next);
 	}
 );
