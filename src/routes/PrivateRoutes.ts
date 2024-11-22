@@ -5,8 +5,8 @@ const privateRoutes = [
 		path: "/api/users/:username",
 		auth: true,
 		rateLimit: {
-			windowMs: 15 * 60 * 1000,
-			max: 5,
+			windowMs: 10 * 1000,
+			limit: 5,
 		},
 		proxy: {
 			target: "http://localhost:8800",
@@ -28,8 +28,8 @@ const privateRoutes = [
 		path: "/api/admin/dashboard",
 		auth: true,
 		rateLimit: {
-			windowMs: 15 * 60 * 1000,
-			max: 10,
+			windowMs: 10 * 1000,
+			limit: 10,
 		},
 		proxy: {
 			target: "http://localhost:8800",

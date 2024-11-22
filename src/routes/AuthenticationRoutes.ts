@@ -3,8 +3,8 @@ const authenticationRoutes = [
 		path: "/api/auth/login",
 		auth: false,
 		rateLimit: {
-			windowMs: 15 * 60 * 1000,
-			max: 5,
+			windowMs: 10 * 1000,
+			limit: 5,
 		},
 		proxy: {
 			target: "http://localhost:8800/api/v1/accounts/login",
@@ -18,8 +18,8 @@ const authenticationRoutes = [
 		path: "/api/auth/register",
 		auth: false,
 		rateLimit: {
-			windowMs: 15 * 60 * 1000,
-			max: 5,
+			windowMs: 10 * 1000,
+			limit: 5,
 		},
 		proxy: {
 			target: "http://localhost:8800/api/v1/accounts/register",

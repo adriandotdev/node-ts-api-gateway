@@ -9,6 +9,7 @@ import {
 	setupAuthenticationMiddleware,
 	setupAuthenticationRoutes,
 	setupPrivateRoutes,
+	setupRateLimiter,
 	setupRoleManagementMiddleware,
 } from "./config/routesSetup";
 
@@ -16,6 +17,7 @@ const app: Application = express();
 
 app.use(morgan("combined"));
 
+setupRateLimiter(app);
 setupAuthenticationMiddleware(app);
 setupRoleManagementMiddleware(app);
 setupAuthenticationRoutes(app);

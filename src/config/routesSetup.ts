@@ -56,3 +56,9 @@ export const setupRoleManagementMiddleware = (app: Application) => {
 		}
 	});
 };
+
+export const setupRateLimiter = (app: Application) => {
+	authenticationRoutes.forEach((route) => {
+		app.use(route.path, rateLimit(route.rateLimit));
+	});
+};
