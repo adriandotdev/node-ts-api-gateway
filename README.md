@@ -87,3 +87,14 @@ PORT=8700 -- This port is for the API Gateway
      ```
 
 5. That's it! You should see the two applications running.
+
+# Requesting to APIs
+
+To request via API gateway to all of your APIs, you need to know what are the paths specified in your routes.
+
+Example is inside of your `AuthenticationRoutes.ts` file you can request to:
+
+- `http://localhost:8700/api/auth/login`
+- `http://localhost:8700/api/auth/register`
+
+Just look on the `path` property.
