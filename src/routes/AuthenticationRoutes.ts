@@ -1,4 +1,6 @@
-const authenticationRoutes = [
+import Route from "../interfaces/IRoute";
+
+const authenticationRoutes: Route[] = [
 	{
 		path: "/api/auth/login",
 		auth: false,
@@ -13,6 +15,7 @@ const authenticationRoutes = [
 				"^/api/auth/login": "",
 			} as { [key: string]: string },
 		},
+		roles: [],
 	},
 	{
 		path: "/api/auth/register",
@@ -28,6 +31,7 @@ const authenticationRoutes = [
 				"^/api/auth/register": "",
 			} as { [key: string]: string },
 		},
+		roles: [],
 	},
 ];
 

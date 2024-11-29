@@ -1,6 +1,7 @@
 import { Request } from "express";
+import Route from "../interfaces/IRoute";
 
-const privateRoutes = [
+const privateRoutes: Route[] = [
 	{
 		path: "/api/users/change-password",
 		auth: true,
